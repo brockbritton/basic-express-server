@@ -1,6 +1,9 @@
 # Basic Express Server
 This is a basic express server built using best practices for node development.
 
+## Deployment 
+[render.com](https://basic-express-server-3ndo.onrender.com/)
+
 ## Getting Started
 
 ### Requirements
