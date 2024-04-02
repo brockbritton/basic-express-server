@@ -1,0 +1,4 @@
+
+xtest('Testing logger middleware', () => {
+
+});
