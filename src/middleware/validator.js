@@ -1,5 +1,5 @@
+'use strict';
 
-// middleware for checking toppings per request
 function validateName(req, res, next) {
   if (!req.query.name) {
     // passes an error to our error handler
@@ -9,5 +9,25 @@ function validateName(req, res, next) {
     next();
   }
 }
+
+function validateId(req, res, next) {
+  if (!req.params.id) {
+    next('No id provided.');
+  } else {
+    next();
+  }
+}
+
+function validateBody(req, res, next) {
+  if (!req.body) {
+    next('No body attached to request.');
+  } else {
+    next();
+  }
+}
   
-module.exports = validateName;
+module.exports = {
+  validateName,
+  validateId,
+  validateBody,
+};

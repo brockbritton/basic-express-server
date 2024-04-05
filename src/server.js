@@ -6,19 +6,24 @@ const express = require('express');
 const cors = require('cors');
 const notFound = require('./error-handlers/404.js');
 const serverError = require('./error-handlers/500.js');
-const validateName = require('./middleware/validator.js');
 const logger = require('./middleware/logger.js');
+const peopleRouter = require('./routes/people.js');
+const petsRouter = require('./routes/pets.js');
 
 const app = express();
 app.use(cors());
-
+app.use(express.json()); 
 app.use(logger);
 
-app.get('/person', validateName, (req, res, next) => {
-  res.send({'name': req.query.name});
-});
+app.use('/api/people', peopleRouter);
+app.use('/api/pets', petsRouter);
 
 app.use(serverError);
 app.use(notFound);
 
-module.exports = app;
+module.exports = {
+  start: (port) => app.listen(port, () => {
+    console.log(`API SERVER RUNNING ON PORT :: ${port}`);
+  }),
+  app,
+};
