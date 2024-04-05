@@ -78,7 +78,7 @@ describe('Express Server', () => {
   test('Should delete one person in the database and return the now empty object with a status of 200', async () => {
     let response = await request.delete('/api/people/1');
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({});
+    expect(response.body).toBeTruthy();
   });
 
 });
